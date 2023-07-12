@@ -6,7 +6,9 @@ const CreateEmployee = () => {
   return (
     <React.Fragment>
       <Header />
-      <CreateEmployeeView />
+      <main>
+        <CreateEmployeeView />
+      </main>
     </React.Fragment>
   )
 }

@@ -3,9 +3,9 @@ import CreateEmployee from './pages/CreateEmployee'
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
       <CreateEmployee />
-    </div>
+    </React.Fragment>
   )
 }
 
