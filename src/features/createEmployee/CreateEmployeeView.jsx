@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const CreateEmployeeView = () => {
   // State for form fields
@@ -11,17 +11,6 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
-
-  // Load states options on component mount
-  useEffect(() => {
-    const stateSelect = document.getElementById('state')
-    states.forEach((state) => {
-      const option = document.createElement('option')
-      option.value = state.abbreviation
-      option.text = state.name
-      stateSelect.appendChild(option)
-    })
-  }, [])
 
   const handleSaveEmployee = (e) => {
     e.preventDefault()
@@ -103,8 +92,11 @@ const CreateEmployeeView = () => {
             value={state}
             onChange={(e) => setState(e.target.value)}
           >
-            {states.map((state) => (
-              <option key={state.abbreviation} value={state.abbreviation}>
+            {states.map((state, index) => (
+              <option
+                key={`${state.abbreviation}-${index}`}
+                value={state.abbreviation}
+              >
                 {state.name}
               </option>
             ))}
