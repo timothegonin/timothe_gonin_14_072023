@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
 const CreateEmployeeView = () => {
+  const dispatch = useDispatch()
+
   // State for form fields
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -15,6 +19,7 @@ const CreateEmployeeView = () => {
 
   const handleSaveEmployee = (e) => {
     e.preventDefault()
+    dispatch(createEmployee())
     const employees = JSON.parse(localStorage.getItem('employees')) || []
     const employee = {
       firstName,
