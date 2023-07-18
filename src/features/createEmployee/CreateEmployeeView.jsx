@@ -19,8 +19,6 @@ const CreateEmployeeView = () => {
 
   const handleSaveEmployee = (e) => {
     e.preventDefault()
-    dispatch(createEmployee())
-    const employees = JSON.parse(localStorage.getItem('employees')) || []
     const employee = {
       firstName,
       lastName,
@@ -32,8 +30,7 @@ const CreateEmployeeView = () => {
       state,
       zipCode,
     }
-    employees.push(employee)
-    localStorage.setItem('employees', JSON.stringify(employees))
+    dispatch(createEmployee(employee))
   }
 
   return (

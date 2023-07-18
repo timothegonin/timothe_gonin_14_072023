@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {}
+const initialState = {
+  employees: JSON.parse(localStorage.getItem('employees')) || [],
+}
 
 const employeesSlice = createSlice({
   name: 'employees',
   initialState,
   reducers: {
     createEmployee: (state, action) => {
-      console.log('createEmployee action')
+      state.employees.push(action.payload)
+      localStorage.setItem('employees', JSON.stringify(state.employees))
     },
   },
 })
