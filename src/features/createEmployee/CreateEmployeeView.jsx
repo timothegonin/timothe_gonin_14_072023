@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
+import Form from 'react-bootstrap/Form'
+
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
 
@@ -36,38 +38,43 @@ const CreateEmployeeView = () => {
   return (
     <section className="container">
       <h2>CreateEmployee</h2>
-      <form action="#" id="create-employee" onSubmit={handleSaveEmployee}>
-        <label htmlFor="first-name">First Name</label>
-        <input
-          type="text"
-          id="first-name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-
-        <label htmlFor="last-name">Last Name</label>
-        <input
-          type="text"
-          id="last-name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-
-        <label htmlFor="date-of-birth">Date of Birth</label>
-        <input
-          id="date-of-birth"
-          type="text"
-          value={dateOfBirth}
-          onChange={(e) => setDateOfBirth(e.target.value)}
-        />
-
-        <label htmlFor="start-date">Start Date</label>
-        <input
-          id="start-date"
-          type="text"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+      <Form action="#" id="create-employee" onSubmit={handleSaveEmployee}>
+        <Form.Group>
+          <Form.Label htmlFor="first-name">First Name</Form.Label>
+          <Form.Control
+            type="text"
+            id="first-name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="last-name">Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            id="last-name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="date-of-birth">Date of Birth</Form.Label>
+          <Form.Control
+            id="date-of-birth"
+            type="date"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="start-date">Start Date</Form.Label>
+          <Form.Control
+            id="start-date"
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </Form.Group>
 
         <fieldset className="address">
           <legend>Address</legend>
@@ -129,7 +136,7 @@ const CreateEmployeeView = () => {
         </select>
 
         <button type="submit">Save</button>
-      </form>
+      </Form>
     </section>
   )
 }
