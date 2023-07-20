@@ -4,6 +4,7 @@ import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
@@ -76,66 +77,77 @@ const CreateEmployeeView = () => {
           />
         </Form.Group>
 
+        <hr />
         <fieldset className="address">
           <legend>Address</legend>
 
-          <label htmlFor="street">Street</label>
-          <input
-            id="street"
-            type="text"
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
-          />
+          <Form.Group>
+            <Form.Label>Street</Form.Label>
+            <Form.Control
+              id="street"
+              type="text"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+            />
+          </Form.Group>
 
-          <label htmlFor="city">City</label>
-          <input
-            id="city"
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
+          <Form.Group>
+            <Form.Label>City</Form.Label>
+            <Form.Control
+              id="city"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </Form.Group>
 
-          <label htmlFor="state">State</label>
-          <select
-            name="state"
-            id="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          >
-            {states.map((state, index) => (
-              <option
-                key={`${state.abbreviation}-${index}`}
-                value={state.abbreviation}
-              >
-                {state.name}
-              </option>
-            ))}
-          </select>
+          <Form.Group>
+            <Form.Label>State</Form.Label>
+            <Form.Select
+              name="state"
+              id="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            >
+              {states.map((state, index) => (
+                <option
+                  key={`${state.abbreviation}-${index}`}
+                  value={state.abbreviation}
+                >
+                  {state.name}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input
-            id="zip-code"
-            type="number"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-          />
+          <Form.Group>
+            <Form.Label>Zip Code</Form.Label>
+            <Form.Control
+              id="zip-code"
+              type="number"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+          </Form.Group>
         </fieldset>
+        <hr />
 
-        <label htmlFor="department">Department</label>
-        <select
-          name="department"
-          id="department"
-          value={department}
-          onChange={(e) => setDepartment(e.target.value)}
-        >
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Legal">Legal</option>
-        </select>
-
-        <button type="submit">Save</button>
+        <Form.Group>
+          <Form.Label htmlFor="department">Department</Form.Label>
+          <Form.Select
+            name="department"
+            id="department"
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+          >
+            <option value="Sales">Sales</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Legal">Legal</option>
+          </Form.Select>
+        </Form.Group>
+        <Button type="submit">Save</Button>
       </Form>
     </section>
   )
