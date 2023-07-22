@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
@@ -6,6 +7,30 @@ import { states } from '../../constants'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ STYLES                                                                  │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
+const Fieldset = styled.fieldset`
+  margin: 16px 0 5px;
+  padding: 0px 12px 36px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+
+  legend {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0;
+  }
+`
+
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ JSX                                                                     │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
 
@@ -77,8 +102,7 @@ const CreateEmployeeView = () => {
           />
         </Form.Group>
 
-        <hr />
-        <fieldset className="address">
+        <Fieldset className="address">
           <legend>Address</legend>
 
           <Form.Group>
@@ -129,8 +153,7 @@ const CreateEmployeeView = () => {
               onChange={(e) => setZipCode(e.target.value)}
             />
           </Form.Group>
-        </fieldset>
-        <hr />
+        </Fieldset>
 
         <Form.Group>
           <Form.Label htmlFor="department">Department</Form.Label>
@@ -147,7 +170,11 @@ const CreateEmployeeView = () => {
             <option value="Legal">Legal</option>
           </Form.Select>
         </Form.Group>
-        <Button type="submit">Save</Button>
+        <div className="mt-4 mb-5">
+          <Button className="w-100" variant="outline-primary" type="submit">
+            Save
+          </Button>
+        </div>
       </Form>
     </section>
   )
