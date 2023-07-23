@@ -1,7 +1,12 @@
 import React from 'react'
+import CreateEmployee from './pages/CreateEmployee'
 
 function App() {
-  return <div className="App">HRNet APP</div>
+  return (
+    <React.Fragment>
+      <CreateEmployee />
+    </React.Fragment>
+  )
 }
 
 export default App
