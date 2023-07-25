@@ -1,11 +1,12 @@
 import React from 'react'
-// import CreateEmployee from './pages/CreateEmployee'
+import Header from './components/Header'
 import Router from './router/Router'
+
 function App() {
   return (
     <React.Fragment>
+      <Header />
       <Router />
-      {/* <CreateEmployee /> */}
     </React.Fragment>
   )
 }
