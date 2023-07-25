@@ -1,5 +1,24 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Table from 'react-bootstrap/Table'
 
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ STYLES                                                                  │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
+const StyledTable = styled(Table)`
+  th,
+  td {
+    vertical-align: middle;
+  }
+`
+
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ JSX                                                                     │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
 const CurrentEmployees = () => {
   const [employees, setEmployees] = useState([])
 
@@ -11,7 +30,14 @@ const CurrentEmployees = () => {
   return (
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
-      <table className="employee-table display">
+      <StyledTable
+        id="employee-table"
+        className="display"
+        striped
+        bordered
+        hover
+        responsive
+      >
         <thead>
           <tr>
             <th>First Name</th>
@@ -40,7 +66,7 @@ const CurrentEmployees = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </StyledTable>
     </div>
   )
 }
