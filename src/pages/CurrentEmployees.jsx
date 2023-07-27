@@ -2,6 +2,9 @@ import React from 'react'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
+import Stack from 'react-bootstrap/Stack'
+import Badge from 'react-bootstrap/Badge'
+import Pagination from 'react-bootstrap/Pagination'
 import EmployeesTableView from '../features/employeesTable/EmployeesTableView'
 
 const CurrentEmployees = () => {
@@ -30,6 +33,27 @@ const CurrentEmployees = () => {
         </Row>
       </Form>
       <EmployeesTableView />
+
+      <Stack direction="horizontal" className="my-3">
+        <Badge bg="info">Showing 1 to 1 of 1 entries</Badge>
+        <Pagination size="sm" className="ms-auto my-auto">
+          <Pagination.First />
+          <Pagination.Prev />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Ellipsis />
+
+          <Pagination.Item>{10}</Pagination.Item>
+          <Pagination.Item>{11}</Pagination.Item>
+          <Pagination.Item active>{12}</Pagination.Item>
+          <Pagination.Item>{13}</Pagination.Item>
+          <Pagination.Item disabled>{14}</Pagination.Item>
+
+          <Pagination.Ellipsis />
+          <Pagination.Item>{20}</Pagination.Item>
+          <Pagination.Next />
+          <Pagination.Last />
+        </Pagination>
+      </Stack>
     </main>
   )
 }
