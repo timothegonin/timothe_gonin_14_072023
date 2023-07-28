@@ -63,8 +63,7 @@ const CreateEmployeeView = () => {
 
   return (
     <section className="container">
-      <h2 className="mt-5 mb-5">CreateEmployee</h2>
-      <Form action="#" id="create-employee" onSubmit={handleSaveEmployee}>
+      <Form id="create-employee" onSubmit={handleSaveEmployee}>
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
           <Form.Control
