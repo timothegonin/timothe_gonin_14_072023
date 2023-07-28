@@ -14,8 +14,8 @@ const CurrentEmployees = () => {
       <h2 className="mt-5 mb-5">Current Employees</h2>
       <Container fluid>
         <Form className="w-100 mb-4 ">
-          <Row className="d-flex justify-content-between">
-            <Col className="col-3 d-flex align-items-center">
+          <Row className="d-flex flex-column-reverse flex-md-row justify-content-between">
+            <Col className="col-8 col-md-3 d-flex align-items-center">
               Show
               <Form.Select className="ms-3 me-3">
                 <option>10</option>
@@ -25,7 +25,7 @@ const CurrentEmployees = () => {
               </Form.Select>
               entries
             </Col>
-            <Col className="col-3">
+            <Col className="col-8 mb-3 mb-md-0 col-md-3">
               <Form.Control
                 type="search"
                 placeholder="Search"
