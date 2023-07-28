@@ -28,14 +28,7 @@ const EmployeesTableView = () => {
   }, [])
 
   return (
-    <StyledTable
-      id="employee-table"
-      className="display"
-      striped
-      bordered
-      hover
-      responsive
-    >
+    <StyledTable id="employee-table" striped bordered hover responsive>
       <thead>
         <tr>
           <th>First Name</th>
