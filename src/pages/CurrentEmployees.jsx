@@ -10,9 +10,9 @@ import EmployeesTableView from '../features/employeesTable/EmployeesTableView'
 
 const CurrentEmployees = () => {
   return (
-    <main id="employee-div" className="container">
+    <main id="employee-div" className="wrapper">
       <h2 className="mt-5 mb-5">Current Employees</h2>
-      <Container fluid>
+      <Container fluid="md">
         {/* CONTROLS AND TABLE */}
         <Form className="w-100 mb-4 ">
           <Row className="d-flex flex-column-reverse flex-md-row justify-content-between">
