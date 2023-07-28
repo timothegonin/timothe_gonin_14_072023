@@ -13,6 +13,7 @@ const CurrentEmployees = () => {
     <main id="employee-div" className="container">
       <h2 className="mt-5 mb-5">Current Employees</h2>
       <Container fluid>
+        {/* CONTROLS AND TABLE */}
         <Form className="w-100 mb-4 ">
           <Row className="d-flex flex-column-reverse flex-md-row justify-content-between">
             <Col className="col-8 col-md-3 d-flex align-items-center">
@@ -35,9 +36,15 @@ const CurrentEmployees = () => {
           </Row>
         </Form>
         <EmployeesTableView />
-        <Stack direction="horizontal" className="my-3">
-          <Badge bg="info">Showing 1 to 1 of 1 entries</Badge>
-          <Pagination size="sm" className="ms-auto my-auto">
+
+        {/* INFOS + PAGINATION */}
+        <Stack
+          direction="horizontal"
+          gap={3}
+          className="my-3 d-flex flex-column flex-md-row justify-content-md-between"
+        >
+          <Badge bg="primary">Showing 1 to 1 of 1 entries</Badge>
+          <Pagination size="sm" className="md-ms-auto my-auto">
             <Pagination.First />
             <Pagination.Prev />
             <Pagination.Item>{1}</Pagination.Item>
