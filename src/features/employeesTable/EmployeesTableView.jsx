@@ -27,7 +27,9 @@ const EmployeesTableView = () => {
     setEmployees(storedEmployees)
   }, [])
 
-  return (
+  return employees.length === 0 ? (
+    <p>No data...</p>
+  ) : (
     <StyledTable id="employee-table" striped bordered hover responsive>
       <thead>
         <tr>

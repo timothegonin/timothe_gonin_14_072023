@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { v4 as uuidv4 } from 'uuid'
 
 const initialState = {
   employees: JSON.parse(localStorage.getItem('employees')) || [],
@@ -9,7 +10,11 @@ const employeesSlice = createSlice({
   initialState,
   reducers: {
     createEmployee: (state, action) => {
-      state.employees.push(action.payload)
+      const newEmployee = {
+        id: uuidv4(),
+        ...action.payload,
+      }
+      state.employees.push(newEmployee)
       localStorage.setItem('employees', JSON.stringify(state.employees))
     },
   },
