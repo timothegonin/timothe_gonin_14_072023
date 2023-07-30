@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header>
       <Navbar bg="light" data-bs-theme="light">
-        <Container className="flex-row">
+        <Container fluid="md" className="flex-row">
           <Navbar.Brand href="#">
             <h1 className="fs-2">HRnet</h1>
           </Navbar.Brand>
