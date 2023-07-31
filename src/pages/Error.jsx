@@ -22,7 +22,7 @@ const Error = () => {
   }, [countdown, navigate])
 
   return (
-    <main className="wrapper">
+    <main className="wrapper px-3">
       <h2 className="my-5">Error</h2>
       <p>Select your destination :</p>
       <div className="d-grid gap-3 mb-5">

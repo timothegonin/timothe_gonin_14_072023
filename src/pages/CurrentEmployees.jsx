@@ -11,14 +11,14 @@ import EmployeesTableView from '../features/employeesTable/EmployeesTableView'
 const CurrentEmployees = () => {
   return (
     <main id="employee-div" className="wrapper">
-      <h2 className="mt-5 mb-5">Current Employees</h2>
+      <h2 className="my-5">Current Employees</h2>
       <Container fluid="md">
         {/* CONTROLS AND TABLE */}
         <Form className="w-100 mb-4 ">
           <Row className="d-flex flex-column-reverse flex-md-row justify-content-between">
-            <Col className="col-8 col-md-3 d-flex align-items-center">
+            <Col className="col-8 col-md-4 d-flex align-items-center">
               Show
-              <Form.Select className="ms-3 me-3">
+              <Form.Select className="mx-3">
                 <option>10</option>
                 <option>25</option>
                 <option>50</option>
