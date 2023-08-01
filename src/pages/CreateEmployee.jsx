@@ -1,12 +1,18 @@
 import React from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import CreateEmployeeView from '../features/createEmployee/CreateEmployeeView'
 
 const CreateEmployee = () => {
   return (
-    <main className="wrapper">
-      <h2 className="my-5">CreateEmployee</h2>
-      <CreateEmployeeView />
-    </main>
+    <HelmetProvider>
+      <main className="wrapper">
+        <Helmet>
+          <title>Home - Create Employee</title>
+        </Helmet>
+        <h2 className="my-5">CreateEmployee</h2>
+        <CreateEmployeeView />
+      </main>
+    </HelmetProvider>
   )
 }
 
