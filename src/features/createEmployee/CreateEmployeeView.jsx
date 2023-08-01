@@ -5,7 +5,7 @@ import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
-import DatePicker from '../../components/DatePicker'
+import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
 
 /* 
@@ -83,13 +83,13 @@ const CreateEmployeeView = () => {
             onChange={(e) => setLastName(e.target.value)}
           />
         </Form.Group>
-        <DatePicker
+        <CustomDatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
           value={dateOfBirth}
           handler={setDateOfBirth}
         />
-        <DatePicker
+        <CustomDatePicker
           label="Start Date"
           htmlForLabel="start-date"
           value={startDate}
