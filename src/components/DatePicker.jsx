@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Form from 'react-bootstrap/Form'
+import { format } from 'date-fns'
 
 const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -20,9 +21,9 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
 
   return (
     <DatePicker
-      selected={value}
-      onChange={(date) => handler(date)}
-      format={'MM/dd/yy'}
+      selected={value ? new Date(value) : null}
+      onChange={(date) => handler(format(date, 'MM-dd-yyyy'))}
+      dateFormat="MM/dd/yyyy"
       customInput={<ExampleCustomInput />}
     />
   )
