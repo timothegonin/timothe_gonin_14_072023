@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import Button from 'react-bootstrap/Button'
@@ -22,28 +23,33 @@ const Error = () => {
   }, [countdown, navigate])
 
   return (
-    <main className="wrapper px-3">
-      <h2 className="my-5">Error</h2>
-      <p>Select your destination :</p>
-      <div className="d-grid gap-3 mb-5">
-        <LinkContainer to="/">
-          <Button variant="outline-primary">Home</Button>
-        </LinkContainer>
+    <HelmetProvider>
+      <Helmet>
+        <title>Redirect : {`${countdown}`}</title>
+      </Helmet>
+      <main className="wrapper px-3">
+        <h2 className="my-5">Error</h2>
+        <p>Select your destination :</p>
+        <div className="d-grid gap-3 mb-5">
+          <LinkContainer to="/">
+            <Button variant="outline-primary">Home</Button>
+          </LinkContainer>
 
-        <LinkContainer to="/employees">
-          <Button variant="outline-primary">Employees list</Button>
-        </LinkContainer>
-      </div>
-      <Stack gap={1} className="text-center">
-        <p className="mb-0">
-          Or you will be automatically redirected to the home page in :
-        </p>
-        <p>
-          <span className="fs-5 fw-bold">{countdown} </span>
-          seconds.
-        </p>
-      </Stack>
-    </main>
+          <LinkContainer to="/employees">
+            <Button variant="outline-primary">Employees list</Button>
+          </LinkContainer>
+        </div>
+        <Stack gap={1} className="text-center">
+          <p className="mb-0">
+            Or you will be automatically redirected to the home page in :
+          </p>
+          <p>
+            <span className="fs-5 fw-bold">{countdown} </span>
+            seconds.
+          </p>
+        </Stack>
+      </main>
+    </HelmetProvider>
   )
 }
 
