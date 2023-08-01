@@ -5,6 +5,7 @@ import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
 
 import Form from 'react-bootstrap/Form'
+import DatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
 
 /* 
@@ -82,24 +83,18 @@ const CreateEmployeeView = () => {
             onChange={(e) => setLastName(e.target.value)}
           />
         </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="date-of-birth">Date of Birth</Form.Label>
-          <Form.Control
-            id="date-of-birth"
-            type="date"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor="start-date">Start Date</Form.Label>
-          <Form.Control
-            id="start-date"
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-        </Form.Group>
+        <DatePicker
+          label="Date of Birth"
+          htmlForLabel="date-of-birth"
+          value={dateOfBirth}
+          handler={setDateOfBirth}
+        />
+        <DatePicker
+          label="Start Date"
+          htmlForLabel="start-date"
+          value={startDate}
+          handler={setStartDate}
+        />
 
         <Fieldset className="address">
           <legend>Address</legend>
@@ -153,7 +148,6 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
         </Fieldset>
-
         <Form.Group>
           <Form.Label htmlFor="department">Department</Form.Label>
           <Form.Select
