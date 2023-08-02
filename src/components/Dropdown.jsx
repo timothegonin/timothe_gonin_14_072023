@@ -12,6 +12,9 @@ const Dropdown = ({ label, htmlForLabel, value, handler, children }) => {
         aria-label={`${label} dropdown menu`}
         role="button"
       >
+        <option className="text-muted">
+          Choose your {label.toLowerCase()}
+        </option>
         {children}
       </Form.Select>
     </Form.Group>

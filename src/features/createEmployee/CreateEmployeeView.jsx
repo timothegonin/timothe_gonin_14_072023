@@ -41,10 +41,10 @@ const CreateEmployeeView = () => {
   const [lastName, setLastName] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [startDate, setStartDate] = useState('')
-  const [department, setDepartment] = useState('Sales')
+  const [department, setDepartment] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
-  const [state, setState] = useState('AL')
+  const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
 
   const handleSaveEmployee = (e) => {
