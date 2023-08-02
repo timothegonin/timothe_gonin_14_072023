@@ -7,6 +7,7 @@ import { states } from '../../constants'
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
+import Dropdown from '../../components/Dropdown'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -40,10 +41,10 @@ const CreateEmployeeView = () => {
   const [lastName, setLastName] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [startDate, setStartDate] = useState('')
-  const [department, setDepartment] = useState('Sales')
+  const [department, setDepartment] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
-  const [state, setState] = useState('AL')
+  const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
 
   const handleSaveEmployee = (e) => {
@@ -119,24 +120,21 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
 
-          <Form.Group>
-            <Form.Label>State</Form.Label>
-            <Form.Select
-              name="state"
-              id="state"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            >
-              {states.map((state, index) => (
-                <option
-                  key={`${state.abbreviation}-${index}`}
-                  value={state.abbreviation}
-                >
-                  {state.name}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
+          <Dropdown
+            label="State"
+            htmlForLabel="state"
+            value={department}
+            handler={setState}
+          >
+            {states.map((state, index) => (
+              <option
+                key={`${state.abbreviation}-${index}`}
+                value={state.abbreviation}
+              >
+                {state.name}
+              </option>
+            ))}
+          </Dropdown>
 
           <Form.Group>
             <Form.Label>Zip Code</Form.Label>
@@ -148,21 +146,20 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
         </Fieldset>
-        <Form.Group>
-          <Form.Label htmlFor="department">Department</Form.Label>
-          <Form.Select
-            name="department"
-            id="department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          >
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Legal">Legal</option>
-          </Form.Select>
-        </Form.Group>
+
+        <Dropdown
+          label="Departement"
+          htmlForLabel="departement"
+          value={department}
+          handler={setDepartment}
+        >
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
+        </Dropdown>
+
         <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
