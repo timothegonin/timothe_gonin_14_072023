@@ -7,6 +7,7 @@ import { states } from '../../constants'
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
+import Dropdown from '../../components/Dropdown'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -148,21 +149,19 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
         </Fieldset>
-        <Form.Group>
-          <Form.Label htmlFor="department">Department</Form.Label>
-          <Form.Select
-            name="department"
-            id="department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          >
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Legal">Legal</option>
-          </Form.Select>
-        </Form.Group>
+        <Dropdown
+          label="Departement"
+          htmlForLabel="departement"
+          value={department}
+          handler={setDepartment}
+        >
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
+        </Dropdown>
+
         <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
