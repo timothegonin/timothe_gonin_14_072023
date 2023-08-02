@@ -120,24 +120,21 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
 
-          <Form.Group>
-            <Form.Label>State</Form.Label>
-            <Form.Select
-              name="state"
-              id="state"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            >
-              {states.map((state, index) => (
-                <option
-                  key={`${state.abbreviation}-${index}`}
-                  value={state.abbreviation}
-                >
-                  {state.name}
-                </option>
-              ))}
-            </Form.Select>
-          </Form.Group>
+          <Dropdown
+            label="State"
+            htmlForLabel="state"
+            value={department}
+            handler={setState}
+          >
+            {states.map((state, index) => (
+              <option
+                key={`${state.abbreviation}-${index}`}
+                value={state.abbreviation}
+              >
+                {state.name}
+              </option>
+            ))}
+          </Dropdown>
 
           <Form.Group>
             <Form.Label>Zip Code</Form.Label>
@@ -149,6 +146,7 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
         </Fieldset>
+
         <Dropdown
           label="Departement"
           htmlForLabel="departement"
