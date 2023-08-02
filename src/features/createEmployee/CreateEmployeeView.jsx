@@ -149,23 +149,19 @@ const CreateEmployeeView = () => {
             />
           </Form.Group>
         </Fieldset>
-        <Dropdown value={department} handler={setDepartment} />
+        <Dropdown
+          label="Departement"
+          htmlForLabel="departement"
+          value={department}
+          handler={setDepartment}
+        >
+          <option value="Sales">Sales</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Human Resources">Human Resources</option>
+          <option value="Legal">Legal</option>
+        </Dropdown>
 
-        {/* <Form.Group>
-          <Form.Label htmlFor="department">Department</Form.Label>
-          <Form.Select
-            name="department"
-            id="department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-          >
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Human Resources">Human Resources</option>
-            <option value="Legal">Legal</option>
-          </Form.Select>
-        </Form.Group> */}
         <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
