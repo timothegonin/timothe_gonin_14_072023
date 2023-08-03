@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
 import Dropdown from '../../components/Dropdown'
+import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -165,6 +166,7 @@ const CreateEmployeeView = () => {
             Save
           </Button>
         </div>
+        <ConfirmationModal />
       </Form>
     </section>
   )
