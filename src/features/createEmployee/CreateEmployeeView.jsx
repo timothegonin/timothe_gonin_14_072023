@@ -47,43 +47,78 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
+  const [validated, setValidated] = useState(false)
 
-  const handleSaveEmployee = (e) => {
-    e.preventDefault()
-    const employee = {
-      firstName,
-      lastName,
-      dateOfBirth,
-      startDate,
-      department,
-      street,
-      city,
-      state,
-      zipCode,
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.stopPropagation()
     }
-    dispatch(createEmployee(employee))
+
+    setValidated(true)
+
+    if (
+      validated &&
+      firstName &&
+      lastName &&
+      dateOfBirth &&
+      startDate &&
+      department &&
+      street &&
+      city &&
+      state &&
+      zipCode
+    ) {
+      const employee = {
+        firstName,
+        lastName,
+        dateOfBirth,
+        startDate,
+        department,
+        street,
+        city,
+        state,
+        zipCode,
+      }
+      dispatch(createEmployee(employee))
+    }
   }
 
   return (
     <section>
-      <Form id="create-employee" onSubmit={handleSaveEmployee}>
+      <Form
+        noValidate
+        validated={validated}
+        id="create-employee"
+        onSubmit={handleFormSubmit}
+      >
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
           <Form.Control
+            required
             type="text"
             id="first-name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
+          <Form.Control.Feedback type="invalid">
+            Please choose a first name.
+          </Form.Control.Feedback>
         </Form.Group>
+
         <Form.Group>
           <Form.Label htmlFor="last-name">Last Name</Form.Label>
           <Form.Control
+            required
             type="text"
             id="last-name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
+          <Form.Control.Feedback type="invalid">
+            Please choose a last name.
+          </Form.Control.Feedback>
         </Form.Group>
         <CustomDatePicker
           label="Date of Birth"
@@ -104,21 +139,29 @@ const CreateEmployeeView = () => {
           <Form.Group>
             <Form.Label>Street</Form.Label>
             <Form.Control
+              required
               id="street"
               type="text"
               value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
+            <Form.Control.Feedback type="invalid">
+              Please choose a street.
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group>
             <Form.Label>City</Form.Label>
             <Form.Control
+              required
               id="city"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
+            <Form.Control.Feedback type="invalid">
+              Please choose a city.
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Dropdown
@@ -140,11 +183,15 @@ const CreateEmployeeView = () => {
           <Form.Group>
             <Form.Label>Zip Code</Form.Label>
             <Form.Control
+              required
               id="zip-code"
               type="number"
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
             />
+            <Form.Control.Feedback type="invalid">
+              Please choose a zip code.
+            </Form.Control.Feedback>
           </Form.Group>
         </Fieldset>
 
