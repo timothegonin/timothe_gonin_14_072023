@@ -8,7 +8,7 @@ import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
 import Dropdown from '../../components/Dropdown'
-import MyVerticallyCenteredModal from '../../components/Modal'
+import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -47,7 +47,6 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
-  // const [modalShow, setModalShow] = useState(false)
 
   const handleSaveEmployee = (e) => {
     e.preventDefault()
@@ -63,7 +62,6 @@ const CreateEmployeeView = () => {
       zipCode,
     }
     dispatch(createEmployee(employee))
-    // setModalShow(true)
   }
 
   return (
@@ -168,10 +166,7 @@ const CreateEmployeeView = () => {
             Save
           </Button>
         </div>
-        <MyVerticallyCenteredModal
-        // show={modalShow}
-        // onHide={() => setModalShow(false)}
-        />
+        <ConfirmationModal />
       </Form>
     </section>
   )

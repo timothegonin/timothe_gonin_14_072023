@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const initialState = {
   employees: JSON.parse(localStorage.getItem('employees')) || [],
-  displayConfirmationModal: false,
+  confirmationModalDisplayed: false,
 }
 
 const employeesSlice = createSlice({
@@ -20,10 +20,10 @@ const employeesSlice = createSlice({
       employeesSlice.caseReducers.showConfirmationModal(state, action)
     },
     showConfirmationModal: (state) => {
-      state.displayConfirmationModal = true
+      state.confirmationModalDisplayed = true
     },
     hideConfirmationModal: (state) => {
-      state.displayConfirmationModal = false
+      state.confirmationModalDisplayed = false
     },
   },
 })

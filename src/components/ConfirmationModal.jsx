@@ -3,17 +3,15 @@ import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideConfirmationModal } from '../features/createEmployee/employeesSlice'
 
-function MyVerticallyCenteredModal(props) {
+function ConfirmationModal() {
   const dispatch = useDispatch()
   const modalStatus = useSelector(
-    (state) => state.employees.displayConfirmationModal
+    (state) => state.employees.confirmationModalDisplayed
   )
-  console.log(props)
   return (
     <Modal
-      // {...props}
       show={modalStatus}
-      // onHide={() => dispatch(hideConfirmationModal())}
+      onHide={() => dispatch(hideConfirmationModal())}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -48,4 +46,4 @@ function MyVerticallyCenteredModal(props) {
   )
 }
 
-export default MyVerticallyCenteredModal
+export default ConfirmationModal
