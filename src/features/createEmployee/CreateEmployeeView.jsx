@@ -47,38 +47,50 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
-
-  // const handleSaveEmployee = (e) => {
-  //   e.preventDefault()
-  //   const employee = {
-  //     firstName,
-  //     lastName,
-  //     dateOfBirth,
-  //     startDate,
-  //     department,
-  //     street,
-  //     city,
-  //     state,
-  //     zipCode,
-  //   }
-  //   dispatch(createEmployee(employee))
-  // }
-
   const [validated, setValidated] = useState(false)
 
+  const handleSaveEmployee = (e) => {
+    e.preventDefault()
+    if (
+      validated &&
+      firstName &&
+      lastName &&
+      dateOfBirth &&
+      startDate &&
+      department &&
+      street &&
+      city &&
+      state &&
+      zipCode
+    ) {
+      const employee = {
+        firstName,
+        lastName,
+        dateOfBirth,
+        startDate,
+        department,
+        street,
+        city,
+        state,
+        zipCode,
+      }
+      dispatch(createEmployee(employee))
+    }
+  }
+
   const handleSubmit = (event) => {
-    event.preventDefault()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
+      event.preventDefault()
       event.stopPropagation()
     }
 
     setValidated(true)
+    handleSaveEmployee(event)
   }
 
   return (
     <section>
-      {/* <Form id="create-employee" onSubmit={handleSaveEmployee}> */}
       <Form
         noValidate
         validated={validated}
