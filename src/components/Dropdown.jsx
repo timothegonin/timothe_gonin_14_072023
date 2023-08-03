@@ -18,7 +18,6 @@ const Dropdown = ({ label, htmlForLabel, value, handler, children }) => {
         </option>
         {children}
       </Form.Select>
-      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       <Form.Control.Feedback type="invalid">
         Please choose a {label.toLowerCase()}.
       </Form.Control.Feedback>

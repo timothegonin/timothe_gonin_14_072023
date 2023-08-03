@@ -47,26 +47,9 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
-
-  // const handleSaveEmployee = (e) => {
-  //   e.preventDefault()
-  //   const employee = {
-  //     firstName,
-  //     lastName,
-  //     dateOfBirth,
-  //     startDate,
-  //     department,
-  //     street,
-  //     city,
-  //     state,
-  //     zipCode,
-  //   }
-  //   dispatch(createEmployee(employee))
-  // }
-
   const [validated, setValidated] = useState(false)
 
-  const handleSubmit = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
@@ -74,16 +57,41 @@ const CreateEmployeeView = () => {
     }
 
     setValidated(true)
+
+    if (
+      validated &&
+      firstName &&
+      lastName &&
+      dateOfBirth &&
+      startDate &&
+      department &&
+      street &&
+      city &&
+      state &&
+      zipCode
+    ) {
+      const employee = {
+        firstName,
+        lastName,
+        dateOfBirth,
+        startDate,
+        department,
+        street,
+        city,
+        state,
+        zipCode,
+      }
+      dispatch(createEmployee(employee))
+    }
   }
 
   return (
     <section>
-      {/* <Form id="create-employee" onSubmit={handleSaveEmployee}> */}
       <Form
         noValidate
         validated={validated}
         id="create-employee"
-        onSubmit={handleSubmit}
+        onSubmit={handleFormSubmit}
       >
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
@@ -94,7 +102,6 @@ const CreateEmployeeView = () => {
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please choose a first name.
           </Form.Control.Feedback>
@@ -109,7 +116,6 @@ const CreateEmployeeView = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please choose a last name.
           </Form.Control.Feedback>
@@ -139,7 +145,6 @@ const CreateEmployeeView = () => {
               value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
               Please choose a street.
             </Form.Control.Feedback>
@@ -154,7 +159,6 @@ const CreateEmployeeView = () => {
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
               Please choose a city.
             </Form.Control.Feedback>
@@ -185,7 +189,6 @@ const CreateEmployeeView = () => {
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
             />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             <Form.Control.Feedback type="invalid">
               Please choose a zip code.
             </Form.Control.Feedback>
