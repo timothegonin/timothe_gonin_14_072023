@@ -49,8 +49,15 @@ const CreateEmployeeView = () => {
   const [zipCode, setZipCode] = useState('')
   const [validated, setValidated] = useState(false)
 
-  const handleSaveEmployee = (e) => {
-    e.preventDefault()
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.stopPropagation()
+    }
+
+    setValidated(true)
+
     if (
       validated &&
       firstName &&
@@ -78,24 +85,13 @@ const CreateEmployeeView = () => {
     }
   }
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
-    setValidated(true)
-    handleSaveEmployee(event)
-  }
-
   return (
     <section>
       <Form
         noValidate
         validated={validated}
         id="create-employee"
-        onSubmit={handleSubmit}
+        onSubmit={handleFormSubmit}
       >
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
