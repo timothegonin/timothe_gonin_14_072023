@@ -3,15 +3,22 @@ import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideConfirmationModal } from '../features/createEmployee/employeesSlice'
 
-function ConfirmationModal() {
+function ConfirmationModal({ onClose }) {
   const dispatch = useDispatch()
   const modalStatus = useSelector(
     (state) => state.employees.confirmationModalDisplayed
   )
+  const handleClose = () => {
+    dispatch(hideConfirmationModal())
+    if (typeof onClose === 'function') {
+      onClose()
+    }
+  }
+
   return (
     <Modal
       show={modalStatus}
-      onHide={() => dispatch(hideConfirmationModal())}
+      onHide={handleClose}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -40,7 +47,7 @@ function ConfirmationModal() {
       </Modal.Body>
 
       <Modal.Footer className="border-top-0">
-        <Button onClick={() => dispatch(hideConfirmationModal())}>Close</Button>
+        <Button onClick={handleClose}>Close</Button>
       </Modal.Footer>
     </Modal>
   )

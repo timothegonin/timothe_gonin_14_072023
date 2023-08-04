@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
@@ -49,49 +49,53 @@ const CreateEmployeeView = () => {
   const [zipCode, setZipCode] = useState('')
   const [validated, setValidated] = useState(false)
 
-  const handleFormSubmit = (event) => {
+  const formRef = useRef(null)
+
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    formRef.current.reset()
+    setFirstName('')
+    setLastName('')
+    setDateOfBirth('')
+    setStartDate('')
+    setDepartment('')
+    setStreet('')
+    setCity('')
+    setState('')
+    setZipCode('')
+  }
+
+  const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.stopPropagation()
+      setValidated(true)
+      return
     }
 
-    setValidated(true)
-
-    if (
-      validated &&
-      firstName &&
-      lastName &&
-      dateOfBirth &&
-      startDate &&
-      department &&
-      street &&
-      city &&
-      state &&
-      zipCode
-    ) {
-      const employee = {
-        firstName,
-        lastName,
-        dateOfBirth,
-        startDate,
-        department,
-        street,
-        city,
-        state,
-        zipCode,
-      }
-      dispatch(createEmployee(employee))
+    const employee = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      startDate,
+      department,
+      street,
+      city,
+      state,
+      zipCode,
     }
+    dispatch(createEmployee(employee))
   }
 
   return (
     <section>
       <Form
+        ref={formRef}
         noValidate
         validated={validated}
         id="create-employee"
-        onSubmit={handleFormSubmit}
+        onSubmit={handleSubmit}
       >
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
@@ -213,7 +217,7 @@ const CreateEmployeeView = () => {
             Save
           </Button>
         </div>
-        <ConfirmationModal />
+        <ConfirmationModal onClose={handleConfirmationModalClose} />
       </Form>
     </section>
   )
