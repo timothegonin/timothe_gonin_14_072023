@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
+import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
@@ -34,51 +35,6 @@ const Fieldset = styled.fieldset`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const useFormFields = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [dateOfBirth, setDateOfBirth] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [department, setDepartment] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zipCode, setZipCode] = useState('')
-
-  const resetFormFields = () => {
-    setFirstName('')
-    setLastName('')
-    setDateOfBirth('')
-    setStartDate('')
-    setDepartment('')
-    setStreet('')
-    setCity('')
-    setState('')
-    setZipCode('')
-  }
-
-  return {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    dateOfBirth,
-    setDateOfBirth,
-    startDate,
-    setStartDate,
-    department,
-    setDepartment,
-    street,
-    setStreet,
-    city,
-    setCity,
-    state,
-    setState,
-    zipCode,
-    setZipCode,
-    resetFormFields,
-  }
-}
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
