@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
+import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/DatePicker'
@@ -34,64 +35,71 @@ const Fieldset = styled.fieldset`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
+
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    dateOfBirth,
+    setDateOfBirth,
+    startDate,
+    setStartDate,
+    department,
+    setDepartment,
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zipCode,
+    setZipCode,
+    resetFormFields,
+  } = useFormFields()
 
-  // State for form fields
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [dateOfBirth, setDateOfBirth] = useState('')
-  const [startDate, setStartDate] = useState('')
-  const [department, setDepartment] = useState('')
-  const [street, setStreet] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zipCode, setZipCode] = useState('')
   const [validated, setValidated] = useState(false)
+  const formRef = useRef(null)
 
-  const handleFormSubmit = (event) => {
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    resetFormFields()
+    formRef.current.reset()
+  }
+
+  const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.stopPropagation()
+      setValidated(true)
+      return
     }
 
-    setValidated(true)
-
-    if (
-      validated &&
-      firstName &&
-      lastName &&
-      dateOfBirth &&
-      startDate &&
-      department &&
-      street &&
-      city &&
-      state &&
-      zipCode
-    ) {
-      const employee = {
-        firstName,
-        lastName,
-        dateOfBirth,
-        startDate,
-        department,
-        street,
-        city,
-        state,
-        zipCode,
-      }
-      dispatch(createEmployee(employee))
+    const employee = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      startDate,
+      department,
+      street,
+      city,
+      state,
+      zipCode,
     }
+    dispatch(createEmployee(employee))
   }
 
   return (
     <section>
       <Form
+        ref={formRef}
         noValidate
         validated={validated}
         id="create-employee"
-        onSubmit={handleFormSubmit}
+        onSubmit={handleSubmit}
       >
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
@@ -213,7 +221,7 @@ const CreateEmployeeView = () => {
             Save
           </Button>
         </div>
-        <ConfirmationModal />
+        <ConfirmationModal onClose={handleConfirmationModalClose} />
       </Form>
     </section>
   )
