@@ -34,10 +34,7 @@ const Fieldset = styled.fieldset`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const CreateEmployeeView = () => {
-  const dispatch = useDispatch()
-
-  // State for form fields
+const useFormFields = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
@@ -47,13 +44,8 @@ const CreateEmployeeView = () => {
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
-  const [validated, setValidated] = useState(false)
 
-  const formRef = useRef(null)
-
-  const handleConfirmationModalClose = () => {
-    setValidated(false)
-    formRef.current.reset()
+  const resetFormFields = () => {
     setFirstName('')
     setLastName('')
     setDateOfBirth('')
@@ -63,6 +55,62 @@ const CreateEmployeeView = () => {
     setCity('')
     setState('')
     setZipCode('')
+  }
+
+  return {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    dateOfBirth,
+    setDateOfBirth,
+    startDate,
+    setStartDate,
+    department,
+    setDepartment,
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zipCode,
+    setZipCode,
+    resetFormFields,
+  }
+}
+
+const CreateEmployeeView = () => {
+  const dispatch = useDispatch()
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    dateOfBirth,
+    setDateOfBirth,
+    startDate,
+    setStartDate,
+    department,
+    setDepartment,
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zipCode,
+    setZipCode,
+    resetFormFields,
+  } = useFormFields()
+
+  const [validated, setValidated] = useState(false)
+  const formRef = useRef(null)
+
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    resetFormFields()
+    formRef.current.reset()
   }
 
   const handleSubmit = (event) => {

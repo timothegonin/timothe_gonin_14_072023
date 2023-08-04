@@ -1,13 +1,15 @@
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { hideConfirmationModal } from '../features/createEmployee/employeesSlice'
 
-function ConfirmationModal({ onClose }) {
+const ConfirmationModal = ({ onClose }) => {
   const dispatch = useDispatch()
   const modalStatus = useSelector(
     (state) => state.employees.confirmationModalDisplayed
   )
+
   const handleClose = () => {
     dispatch(hideConfirmationModal())
     if (typeof onClose === 'function') {
