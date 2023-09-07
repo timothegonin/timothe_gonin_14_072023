@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import Table from 'react-bootstrap/Table'
+// import styled from 'styled-components'
+// import Table from 'react-bootstrap/Table'
+import { SortableTable } from 'sortable-table-react'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
   │ STYLES                                                                  │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const StyledTable = styled(Table)`
-  th,
-  td {
-    vertical-align: middle;
-  }
-`
+// const StyledTable = styled(Table)`
+//   th,
+//   td {
+//     vertical-align: middle;
+//   }
+// `
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -21,6 +22,17 @@ const StyledTable = styled(Table)`
  */
 const EmployeesTableView = () => {
   const [employees, setEmployees] = useState([])
+  const tableHeadsList = [
+    'First Name',
+    'Last Name',
+    'Start Date',
+    'Department',
+    'Date of Birth',
+    'Street',
+    'City',
+    'State',
+    'Zip Code',
+  ]
 
   useEffect(() => {
     const storedEmployees = JSON.parse(localStorage.getItem('employees')) || []
@@ -28,38 +40,9 @@ const EmployeesTableView = () => {
   }, [])
 
   return employees.length === 0 ? (
-    <p>No data...</p>
+    <p>Loading...</p>
   ) : (
-    <StyledTable id="employee-table" striped bordered hover responsive>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Start Date</th>
-          <th>Department</th>
-          <th>Date of Birth</th>
-          <th>Street</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zip Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map((employee, index) => (
-          <tr key={index}>
-            <td>{employee.firstName}</td>
-            <td>{employee.lastName}</td>
-            <td>{employee.startDate}</td>
-            <td>{employee.department}</td>
-            <td>{employee.dateOfBirth}</td>
-            <td>{employee.street}</td>
-            <td>{employee.city}</td>
-            <td>{employee.state}</td>
-            <td>{employee.zipCode}</td>
-          </tr>
-        ))}
-      </tbody>
-    </StyledTable>
+    <SortableTable data={employees} tableHeads={tableHeadsList} />
   )
 }
 
