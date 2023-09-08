@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Spinner from 'react-bootstrap/Spinner'
 import { SortableTable } from 'sortable-table-react'
 
 /* 
@@ -26,7 +27,9 @@ const EmployeesTableView = () => {
   }, [])
 
   return employees.length === 0 ? (
-    <p>Loading...</p>
+    <Spinner animation="border" role="status" variant="primary">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   ) : (
     <SortableTable data={employees} tableHeads={tableHeadsList} />
   )
