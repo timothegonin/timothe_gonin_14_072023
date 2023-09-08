@@ -1,19 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import styled from 'styled-components'
-// import Table from 'react-bootstrap/Table'
 import { SortableTable } from 'sortable-table-react'
-
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ STYLES                                                                  │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-// const StyledTable = styled(Table)`
-//   th,
-//   td {
-//     vertical-align: middle;
-//   }
-// `
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
