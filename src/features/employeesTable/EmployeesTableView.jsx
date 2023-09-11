@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Spinner from 'react-bootstrap/Spinner'
 import { SortableTable } from 'sortable-table-react'
 
@@ -8,7 +9,9 @@ import { SortableTable } from 'sortable-table-react'
   └─────────────────────────────────────────────────────────────────────────┘
  */
 const EmployeesTableView = () => {
-  const [employees, setEmployees] = useState([])
+  const employees = useSelector((state) => state.employees.currentEmployees)
+  console.log(employees)
+
   const tableHeadsList = [
     'First Name',
     'Last Name',
@@ -20,11 +23,6 @@ const EmployeesTableView = () => {
     'State',
     'Zip Code',
   ]
-
-  useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || []
-    setEmployees(storedEmployees)
-  }, [])
 
   return employees.length === 0 ? (
     <Spinner animation="border" role="status" variant="primary">
