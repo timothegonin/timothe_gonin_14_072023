@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
+// import { data } from '../../MOCK/example-data'
 
 const initialState = {
-  employees: JSON.parse(localStorage.getItem('employees')) || [],
+  currentEmployees: JSON.parse(localStorage.getItem('employees')) || [],
+  // currentEmployees: [...data],
   confirmationModalDisplayed: false,
 }
 
