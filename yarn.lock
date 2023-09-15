@@ -8530,10 +8530,10 @@ sockjs@^0.3.24:
     uuid "^8.3.2"
     websocket-driver "^0.7.4"
 
-sortable-table-react@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/sortable-table-react/-/sortable-table-react-1.0.1.tgz#8b2a985dcbf0137ed95a2d89df3db770680d00c9"
-  integrity sha512-Is7pROVnnw3WUpap6ROLIYvyt/tJPjN/w3cf9sXPFxQwinbcJ+BR/qSZDwxKZkJy+OudaPy3HXBG3nT4ASyIgA==
+sortable-table-react@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/sortable-table-react/-/sortable-table-react-1.0.2.tgz#b634f5a7d45d29ef6bee3b67a4a7abf6b635c0df"
+  integrity sha512-5rNjwqD+cWZYx//6kpKGyxl7ImAttTL98Fu25aHmfq6Oxz+uigG52ktGo55kNNeGRI4FVlHaDe53cx9KjcfqDg==
   dependencies:
     bootstrap "^5.3.1"
     react-bootstrap "^2.8.0"
