@@ -5,6 +5,16 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Button from 'react-bootstrap/Button'
 import Stack from 'react-bootstrap/Stack'
 
+/**
+ * The Error component is responsible for rendering an error page that provides users
+ * with options to select their destination or automatically redirects them to the home page.
+ * It uses the HelmetProvider and Helmet components from react-helmet-async to manage
+ * the page title. The countdown feature is implemented to redirect the user to the home page
+ * after a certain duration.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered Error component.
+ */
 const Error = () => {
   const navigate = useNavigate()
   const [countdown, setCountdown] = useState(5)
