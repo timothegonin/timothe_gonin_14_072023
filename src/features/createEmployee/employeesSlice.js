@@ -17,8 +17,8 @@ const employeesSlice = createSlice({
         id: uuidv4(),
         ...action.payload,
       }
-      state.employees.push(newEmployee)
-      localStorage.setItem('employees', JSON.stringify(state.employees))
+      state.currentEmployees.push(newEmployee)
+      localStorage.setItem('employees', JSON.stringify(state.currentEmployees))
       employeesSlice.caseReducers.showConfirmationModal(state, action)
     },
     showConfirmationModal: (state) => {
