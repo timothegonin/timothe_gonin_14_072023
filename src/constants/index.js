@@ -1,3 +1,8 @@
+/**
+ * Tableau des États américains avec leurs noms et abréviations.
+ * @type {Array<{name: string, abbreviation: string}>}
+ */
+
 export const states = [
   {
     name: 'Alabama',
