@@ -36,6 +36,16 @@ const Fieldset = styled.fieldset`
   └─────────────────────────────────────────────────────────────────────────┘
  */
 
+/**
+ * The `CreateEmployeeView` component represents the view for creating a new employee.
+ *
+ * This component includes a form with various fields for entering employee information,
+ * such as first name, last name, date of birth, and address details.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered CreateEmployeeView component.
+ */
+
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
   const {
@@ -101,6 +111,7 @@ const CreateEmployeeView = () => {
         id="create-employee"
         onSubmit={handleSubmit}
       >
+        {/* First Name */}
         <Form.Group>
           <Form.Label htmlFor="first-name">First Name</Form.Label>
           <Form.Control
@@ -114,7 +125,7 @@ const CreateEmployeeView = () => {
             Please choose a first name.
           </Form.Control.Feedback>
         </Form.Group>
-
+        {/* Last Name */}
         <Form.Group>
           <Form.Label htmlFor="last-name">Last Name</Form.Label>
           <Form.Control
@@ -128,22 +139,24 @@ const CreateEmployeeView = () => {
             Please choose a last name.
           </Form.Control.Feedback>
         </Form.Group>
+        {/* Date of Birth */}
         <CustomDatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
           value={dateOfBirth}
           handler={setDateOfBirth}
         />
+        {/* Start Date */}
         <CustomDatePicker
           label="Start Date"
           htmlForLabel="start-date"
           value={startDate}
           handler={setStartDate}
         />
-
+        {/* Address */}
         <Fieldset className="address">
           <legend>Address</legend>
-
+          {/* Street */}
           <Form.Group>
             <Form.Label>Street</Form.Label>
             <Form.Control
@@ -157,7 +170,7 @@ const CreateEmployeeView = () => {
               Please choose a street.
             </Form.Control.Feedback>
           </Form.Group>
-
+          {/* City */}
           <Form.Group>
             <Form.Label>City</Form.Label>
             <Form.Control
@@ -171,7 +184,7 @@ const CreateEmployeeView = () => {
               Please choose a city.
             </Form.Control.Feedback>
           </Form.Group>
-
+          {/* State */}
           <Dropdown
             label="State"
             htmlForLabel="state"
@@ -187,7 +200,7 @@ const CreateEmployeeView = () => {
               </option>
             ))}
           </Dropdown>
-
+          {/* Zip Code */}
           <Form.Group>
             <Form.Label>Zip Code</Form.Label>
             <Form.Control
@@ -202,7 +215,7 @@ const CreateEmployeeView = () => {
             </Form.Control.Feedback>
           </Form.Group>
         </Fieldset>
-
+        {/* Department */}
         <Dropdown
           label="Departement"
           htmlForLabel="departement"
@@ -215,12 +228,13 @@ const CreateEmployeeView = () => {
           <option value="Human Resources">Human Resources</option>
           <option value="Legal">Legal</option>
         </Dropdown>
-
+        {/* Submit Button */}
         <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
           </Button>
         </div>
+        {/* Confirmation Modal */}
         <ConfirmationModal onClose={handleConfirmationModalClose} />
       </Form>
     </section>

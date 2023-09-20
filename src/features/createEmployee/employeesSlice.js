@@ -2,9 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 // import { data } from '../../MOCK/example-data'
 
+/**
+ * Redux module for managing employee data and confirmation dialog display.
+ * @module employeesSlice
+ */
+
 const initialState = {
+  /**
+   * List of currently registered employees.
+   * @type {Array<Object>}
+   */
   currentEmployees: JSON.parse(localStorage.getItem('employees')) || [],
   // currentEmployees: [...data],
+  /**
+   * Indicates whether the confirmation dialog should be displayed.
+   * @type {boolean}
+   */
   confirmationModalDisplayed: false,
 }
 
