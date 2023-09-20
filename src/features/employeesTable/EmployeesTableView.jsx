@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux'
 import Spinner from 'react-bootstrap/Spinner'
 import { SortableTable } from 'sortable-table-react'
 
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ JSX                                                                     │
-  └─────────────────────────────────────────────────────────────────────────┘
+/**
+ * Component for displaying a table of employee data.
+ * @component
+ * @returns {JSX.Element} - The rendered EmployeesTableView component.
  */
+
 const EmployeesTableView = () => {
   const employees = useSelector((state) => state.employees.currentEmployees)
   console.log(employees)
