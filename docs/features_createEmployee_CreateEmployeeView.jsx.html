@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: features/createEmployee/CreateEmployeeView.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: features/createEmployee/CreateEmployeeView.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useRef, useState } from 'react'
+import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { createEmployee } from './employeesSlice'
+import { states } from '../../constants'
+import useFormFields from '../../hooks/useFormFields'
+
+import Form from 'react-bootstrap/Form'
+import CustomDatePicker from '../../components/DatePicker'
+import Button from 'react-bootstrap/Button'
+import Dropdown from '../../components/Dropdown'
+import ConfirmationModal from '../../components/ConfirmationModal'
+
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ STYLES                                                                  │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
+const Fieldset = styled.fieldset`
+  margin: 16px 0 5px;
+  padding: 0px 12px 36px;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+
+  legend {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0;
+  }
+`
+
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ JSX                                                                     │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
+
+/**
+ * The `CreateEmployeeView` component represents the view for creating a new employee.
+ *
+ * This component includes a form with various fields for entering employee information,
+ * such as first name, last name, date of birth, and address details.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered CreateEmployeeView component.
+ */
+
+const CreateEmployeeView = () => {
+  const dispatch = useDispatch()
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    dateOfBirth,
+    setDateOfBirth,
+    startDate,
+    setStartDate,
+    department,
+    setDepartment,
+    street,
+    setStreet,
+    city,
+    setCity,
+    state,
+    setState,
+    zipCode,
+    setZipCode,
+    resetFormFields,
+  } = useFormFields()
+
+  const [validated, setValidated] = useState(false)
+  const formRef = useRef(null)
+
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    resetFormFields()
+    formRef.current.reset()
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.stopPropagation()
+      setValidated(true)
+      return
+    }
+
+    const employee = {
+      firstName,
+      lastName,
+      dateOfBirth,
+      startDate,
+      department,
+      street,
+      city,
+      state,
+      zipCode,
+    }
+    dispatch(createEmployee(employee))
+  }
+
+  return (
+    &lt;section>
+      &lt;Form
+        ref={formRef}
+        noValidate
+        validated={validated}
+        id="create-employee"
+        onSubmit={handleSubmit}
+      >
+        {/* First Name */}
+        &lt;Form.Group>
+          &lt;Form.Label htmlFor="first-name">First Name&lt;/Form.Label>
+          &lt;Form.Control
+            required
+            type="text"
+            id="first-name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          &lt;Form.Control.Feedback type="invalid">
+            Please choose a first name.
+          &lt;/Form.Control.Feedback>
+        &lt;/Form.Group>
+        {/* Last Name */}
+        &lt;Form.Group>
+          &lt;Form.Label htmlFor="last-name">Last Name&lt;/Form.Label>
+          &lt;Form.Control
+            required
+            type="text"
+            id="last-name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          &lt;Form.Control.Feedback type="invalid">
+            Please choose a last name.
+          &lt;/Form.Control.Feedback>
+        &lt;/Form.Group>
+        {/* Date of Birth */}
+        &lt;CustomDatePicker
+          label="Date of Birth"
+          htmlForLabel="date-of-birth"
+          value={dateOfBirth}
+          handler={setDateOfBirth}
+        />
+        {/* Start Date */}
+        &lt;CustomDatePicker
+          label="Start Date"
+          htmlForLabel="start-date"
+          value={startDate}
+          handler={setStartDate}
+        />
+        {/* Address */}
+        &lt;Fieldset className="address">
+          &lt;legend>Address&lt;/legend>
+          {/* Street */}
+          &lt;Form.Group>
+            &lt;Form.Label>Street&lt;/Form.Label>
+            &lt;Form.Control
+              required
+              id="street"
+              type="text"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+            />
+            &lt;Form.Control.Feedback type="invalid">
+              Please choose a street.
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
+          {/* City */}
+          &lt;Form.Group>
+            &lt;Form.Label>City&lt;/Form.Label>
+            &lt;Form.Control
+              required
+              id="city"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            &lt;Form.Control.Feedback type="invalid">
+              Please choose a city.
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
+          {/* State */}
+          &lt;Dropdown
+            label="State"
+            htmlForLabel="state"
+            value={department}
+            handler={setState}
+          >
+            {states.map((state, index) => (
+              &lt;option
+                key={`${state.abbreviation}-${index}`}
+                value={state.abbreviation}
+              >
+                {state.name}
+              &lt;/option>
+            ))}
+          &lt;/Dropdown>
+          {/* Zip Code */}
+          &lt;Form.Group>
+            &lt;Form.Label>Zip Code&lt;/Form.Label>
+            &lt;Form.Control
+              required
+              id="zip-code"
+              type="number"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+            &lt;Form.Control.Feedback type="invalid">
+              Please choose a zip code.
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
+        &lt;/Fieldset>
+        {/* Department */}
+        &lt;Dropdown
+          label="Departement"
+          htmlForLabel="departement"
+          value={department}
+          handler={setDepartment}
+        >
+          &lt;option value="Sales">Sales&lt;/option>
+          &lt;option value="Marketing">Marketing&lt;/option>
+          &lt;option value="Engineering">Engineering&lt;/option>
+          &lt;option value="Human Resources">Human Resources&lt;/option>
+          &lt;option value="Legal">Legal&lt;/option>
+        &lt;/Dropdown>
+        {/* Submit Button */}
+        &lt;div className="mt-4 mb-5">
+          &lt;Button className="w-100" variant="outline-primary" type="submit">
+            Save
+          &lt;/Button>
+        &lt;/div>
+        {/* Confirmation Modal */}
+        &lt;ConfirmationModal onClose={handleConfirmationModalClose} />
+      &lt;/Form>
+    &lt;/section>
+  )
+}
+
+export default CreateEmployeeView
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeesSlice.html">employeesSlice</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ConfirmationModal">ConfirmationModal</a></li><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CreateEmployeeView">CreateEmployeeView</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#CustomDatePicker">CustomDatePicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#EmployeesTableView">EmployeesTableView</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#states">states</a></li><li><a href="global.html#useFormFields">useFormFields</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Sep 20 2023 09:43:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
