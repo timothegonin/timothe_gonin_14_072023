@@ -23,7 +23,9 @@ Web application that manages employee records.
 
 ---
 
----## Frontend _Installation - Run locally_
+---
+
+## Frontend _Installation - Run locally_
 
 ### 1 - Clone this repository in a new terminal and move to directory
 
@@ -31,34 +33,42 @@ Web application that manages employee records.
 
 ### 2 - Open a terminal window in the cloned project and run the following commands
 
-- _Install dependencies_
+- **Install dependencies**
 
-_**npm**_
+_npm_
 
 ```bash
 npm install
 ```
 
-_**yarn**_
+_yarn_
 
 ```bash
 yarn
 ```
 
-- _Start local dev server_
-  _**npm**_
+- **Start local dev server**
+  _npm_
 
 ```bash
 npm run start
 ```
 
-_**yarn**_
+_yarn_
 
 ```bash
 yarn start
 ```
 
 #### _Then navigate to [https://localhost:3001](https://localhost:3001)_
+
+---
+
+---
+
+## Appendix
+
+##### _To learn more about how the sortable table works, you can visit [this repository](https://github.com/TimotheGonin/sortable-table-react)_
 
 ---
 
