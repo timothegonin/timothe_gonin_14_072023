@@ -140,19 +140,33 @@ const CreateEmployeeView = () => {
           </Form.Control.Feedback>
         </Form.Group>
         {/* Date of Birth */}
-        <CustomDatePicker
-          label="Date of Birth"
-          htmlForLabel="date-of-birth"
-          value={dateOfBirth}
-          handler={setDateOfBirth}
-        />
+        <Form.Group>
+          <Form.Label htmlFor="date-of-birth">Date of Birth</Form.Label>
+          <Form.Control
+            required
+            type="date"
+            id="date-of-birth"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+          />
+          <Form.Control.Feedback type="invalid">
+            Please choose a date of birth.
+          </Form.Control.Feedback>
+        </Form.Group>
         {/* Start Date */}
-        <CustomDatePicker
-          label="Start Date"
-          htmlForLabel="start-date"
-          value={startDate}
-          handler={setStartDate}
-        />
+        <Form.Group>
+          <Form.Label htmlFor="start-date">Start Date</Form.Label>
+          <Form.Control
+            required
+            type="date"
+            id="start-date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+          <Form.Control.Feedback type="invalid">
+            Please choose a start date.
+          </Form.Control.Feedback>
+        </Form.Group>
         {/* Address */}
         <Fieldset className="address">
           <legend>Address</legend>
