@@ -1,4 +1,32 @@
-import React, { useRef, useState } from 'react'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: features/createEmployee/CreateEmployeeView.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: features/createEmployee/CreateEmployeeView.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
@@ -103,8 +131,8 @@ const CreateEmployeeView = () => {
   }
 
   return (
-    <section>
-      <Form
+    &lt;section>
+      &lt;Form
         ref={formRef}
         noValidate
         validated={validated}
@@ -112,133 +140,156 @@ const CreateEmployeeView = () => {
         onSubmit={handleSubmit}
       >
         {/* First Name */}
-        <Form.Group>
-          <Form.Label htmlFor="first-name">First Name</Form.Label>
-          <Form.Control
+        &lt;Form.Group>
+          &lt;Form.Label htmlFor="first-name">First Name&lt;/Form.Label>
+          &lt;Form.Control
             required
             type="text"
             id="first-name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <Form.Control.Feedback type="invalid">
+          &lt;Form.Control.Feedback type="invalid">
             Please choose a first name.
-          </Form.Control.Feedback>
-        </Form.Group>
+          &lt;/Form.Control.Feedback>
+        &lt;/Form.Group>
         {/* Last Name */}
-        <Form.Group>
-          <Form.Label htmlFor="last-name">Last Name</Form.Label>
-          <Form.Control
+        &lt;Form.Group>
+          &lt;Form.Label htmlFor="last-name">Last Name&lt;/Form.Label>
+          &lt;Form.Control
             required
             type="text"
             id="last-name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <Form.Control.Feedback type="invalid">
+          &lt;Form.Control.Feedback type="invalid">
             Please choose a last name.
-          </Form.Control.Feedback>
-        </Form.Group>
+          &lt;/Form.Control.Feedback>
+        &lt;/Form.Group>
         {/* Date of Birth */}
-        <CustomDatePicker
+        &lt;CustomDatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
           value={dateOfBirth}
           handler={setDateOfBirth}
         />
         {/* Start Date */}
-        <CustomDatePicker
+        &lt;CustomDatePicker
           label="Start Date"
           htmlForLabel="start-date"
           value={startDate}
           handler={setStartDate}
         />
         {/* Address */}
-        <Fieldset className="address">
-          <legend>Address</legend>
+        &lt;Fieldset className="address">
+          &lt;legend>Address&lt;/legend>
           {/* Street */}
-          <Form.Group>
-            <Form.Label>Street</Form.Label>
-            <Form.Control
+          &lt;Form.Group>
+            &lt;Form.Label>Street&lt;/Form.Label>
+            &lt;Form.Control
               required
               id="street"
               type="text"
               value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
-            <Form.Control.Feedback type="invalid">
+            &lt;Form.Control.Feedback type="invalid">
               Please choose a street.
-            </Form.Control.Feedback>
-          </Form.Group>
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
           {/* City */}
-          <Form.Group>
-            <Form.Label>City</Form.Label>
-            <Form.Control
+          &lt;Form.Group>
+            &lt;Form.Label>City&lt;/Form.Label>
+            &lt;Form.Control
               required
               id="city"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
-            <Form.Control.Feedback type="invalid">
+            &lt;Form.Control.Feedback type="invalid">
               Please choose a city.
-            </Form.Control.Feedback>
-          </Form.Group>
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
           {/* State */}
-          <Dropdown
+          &lt;Dropdown
             label="State"
             htmlForLabel="state"
             value={department}
             handler={setState}
           >
             {states.map((state, index) => (
-              <option
+              &lt;option
                 key={`${state.abbreviation}-${index}`}
                 value={state.abbreviation}
               >
                 {state.name}
-              </option>
+              &lt;/option>
             ))}
-          </Dropdown>
+          &lt;/Dropdown>
           {/* Zip Code */}
-          <Form.Group>
-            <Form.Label>Zip Code</Form.Label>
-            <Form.Control
+          &lt;Form.Group>
+            &lt;Form.Label>Zip Code&lt;/Form.Label>
+            &lt;Form.Control
               required
               id="zip-code"
               type="number"
               value={zipCode}
               onChange={(e) => setZipCode(e.target.value)}
             />
-            <Form.Control.Feedback type="invalid">
+            &lt;Form.Control.Feedback type="invalid">
               Please choose a zip code.
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Fieldset>
+            &lt;/Form.Control.Feedback>
+          &lt;/Form.Group>
+        &lt;/Fieldset>
         {/* Department */}
-        <Dropdown
+        &lt;Dropdown
           label="Departement"
           htmlForLabel="departement"
           value={department}
           handler={setDepartment}
         >
-          <option value="Sales">Sales</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Engineering">Engineering</option>
-          <option value="Human Resources">Human Resources</option>
-          <option value="Legal">Legal</option>
-        </Dropdown>
+          &lt;option value="Sales">Sales&lt;/option>
+          &lt;option value="Marketing">Marketing&lt;/option>
+          &lt;option value="Engineering">Engineering&lt;/option>
+          &lt;option value="Human Resources">Human Resources&lt;/option>
+          &lt;option value="Legal">Legal&lt;/option>
+        &lt;/Dropdown>
         {/* Submit Button */}
-        <div className="mt-4 mb-5">
-          <Button className="w-100" variant="outline-primary" type="submit">
+        &lt;div className="mt-4 mb-5">
+          &lt;Button className="w-100" variant="outline-primary" type="submit">
             Save
-          </Button>
-        </div>
+          &lt;/Button>
+        &lt;/div>
         {/* Confirmation Modal */}
-        <ConfirmationModal onClose={handleConfirmationModalClose} />
-      </Form>
-    </section>
+        &lt;ConfirmationModal onClose={handleConfirmationModalClose} />
+      &lt;/Form>
+    &lt;/section>
   )
 }
 
 export default CreateEmployeeView
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-employeesSlice.html">employeesSlice</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#ConfirmationModal">ConfirmationModal</a></li><li><a href="global.html#CreateEmployee">CreateEmployee</a></li><li><a href="global.html#CreateEmployeeView">CreateEmployeeView</a></li><li><a href="global.html#CurrentEmployees">CurrentEmployees</a></li><li><a href="global.html#CustomDatePicker">CustomDatePicker</a></li><li><a href="global.html#Dropdown">Dropdown</a></li><li><a href="global.html#EmployeesTableView">EmployeesTableView</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#states">states</a></li><li><a href="global.html#useFormFields">useFormFields</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Sep 20 2023 09:43:21 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

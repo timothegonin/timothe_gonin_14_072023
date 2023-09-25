@@ -1,46 +1,79 @@
-# Getting Started with Create React App and Redux
+# Openclassrooms - Project 14 - HRNet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Web application that manages employee records.
 
-## Available Scripts
+![JavaScript](https://img.shields.io/badge/Language-JavaScript-f7df1e)
+![React](https://img.shields.io/badge/Framework-React-5ED3F3)
+![Redux](https://img.shields.io/badge/State_Manager-Redux--Tool--Kit-764abc)
+![React-Bootstrap](https://img.shields.io/badge/Front--end_Framework-React--Bootstrap-41E0FD)
 
-In the project directory, you can run:
+### Features description :
 
-### `npm start`
+- Enter employee information into a form
+- Displaying data in a sortable table.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**NodeJS :** (v16.15.0 or later)
+**Npm :** (v7.24.0 or later) / **Yarn :** (v1.22.18 or later)
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend _Installation - Run locally_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1 - Clone this repository in a new terminal and move to directory
 
-### `npm run eject`
+`git clone https://github.com/TimotheGonin/timothe_gonin_14_072023.git`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2 - Open a terminal window in the cloned project and run the following commands
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Install dependencies**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+_npm_
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+_yarn_
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+yarn
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Start local dev server**
+  _npm_
+
+```bash
+npm run start
+```
+
+_yarn_
+
+```bash
+yarn start
+```
+
+#### _Then navigate to [https://localhost:3001](https://localhost:3001)_
+
+---
+
+---
+
+## Appendix
+
+##### _To learn more about how the sortable table works, you can visit [this repository](https://github.com/TimotheGonin/sortable-table-react)_
+
+---
+
+---
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

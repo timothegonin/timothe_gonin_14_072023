@@ -1,65 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import Table from 'react-bootstrap/Table'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Spinner from 'react-bootstrap/Spinner'
+import { SortableTable } from 'sortable-table-react'
 
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ STYLES                                                                  │
-  └─────────────────────────────────────────────────────────────────────────┘
+/**
+ * Component for displaying a table of employee data.
+ * @component
+ * @returns {JSX.Element} - The rendered EmployeesTableView component.
  */
-const StyledTable = styled(Table)`
-  th,
-  td {
-    vertical-align: middle;
-  }
-`
 
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ JSX                                                                     │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
 const EmployeesTableView = () => {
-  const [employees, setEmployees] = useState([])
+  const employees = useSelector((state) => state.employees.currentEmployees)
+  console.log(employees)
 
-  useEffect(() => {
-    const storedEmployees = JSON.parse(localStorage.getItem('employees')) || []
-    setEmployees(storedEmployees)
-  }, [])
+  const tableHeadsList = [
+    'First Name',
+    'Last Name',
+    'Start Date',
+    'Department',
+    'Date of Birth',
+    'Street',
+    'City',
+    'State',
+    'Zip Code',
+  ]
 
   return employees.length === 0 ? (
-    <p>No data...</p>
+    <Spinner animation="border" role="status" variant="primary">
+      <span className="visually-hidden">Loading...</span>
+    </Spinner>
   ) : (
-    <StyledTable id="employee-table" striped bordered hover responsive>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Start Date</th>
-          <th>Department</th>
-          <th>Date of Birth</th>
-          <th>Street</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zip Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map((employee, index) => (
-          <tr key={index}>
-            <td>{employee.firstName}</td>
-            <td>{employee.lastName}</td>
-            <td>{employee.startDate}</td>
-            <td>{employee.department}</td>
-            <td>{employee.dateOfBirth}</td>
-            <td>{employee.street}</td>
-            <td>{employee.city}</td>
-            <td>{employee.state}</td>
-            <td>{employee.zipCode}</td>
-          </tr>
-        ))}
-      </tbody>
-    </StyledTable>
+    <SortableTable data={employees} tableHeads={tableHeadsList} />
   )
 }
 
