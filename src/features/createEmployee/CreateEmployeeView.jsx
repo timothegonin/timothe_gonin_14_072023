@@ -6,9 +6,9 @@ import { states } from '../../constants'
 import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
-import CustomDatePicker from '../../components/DatePicker'
-import Button from 'react-bootstrap/Button'
+import DatePicker from '../../components/DatePicker'
 import Dropdown from '../../components/Dropdown'
+import Button from 'react-bootstrap/Button'
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
@@ -142,20 +142,7 @@ const CreateEmployeeView = () => {
         </Form.Group>
 
         {/* Date of Birth */}
-        {/* <Form.Group>
-          <Form.Label htmlFor="date-of-birth">Date of Birth</Form.Label>
-          <Form.Control
-            required
-            type="date"
-            id="date-of-birth"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please choose a date of birth.
-          </Form.Control.Feedback>
-        </Form.Group> */}
-        <CustomDatePicker
+        <DatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
           value={dateOfBirth}
@@ -163,19 +150,12 @@ const CreateEmployeeView = () => {
         />
 
         {/* Start Date */}
-        <Form.Group>
-          <Form.Label htmlFor="start-date">Start Date</Form.Label>
-          <Form.Control
-            required
-            type="date"
-            id="start-date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please choose a start date.
-          </Form.Control.Feedback>
-        </Form.Group>
+        <DatePicker
+          label="Start Date"
+          htmlForLabel="start-date"
+          value={startDate}
+          handler={setStartDate}
+        />
 
         {/* FIELDSET ADRESS */}
         <Fieldset className="address">
