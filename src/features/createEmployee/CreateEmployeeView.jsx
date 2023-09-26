@@ -6,6 +6,7 @@ import { states } from '../../constants'
 import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
+import CustomDatePicker from '../../components/DatePicker'
 import Button from 'react-bootstrap/Button'
 import Dropdown from '../../components/Dropdown'
 import ConfirmationModal from '../../components/ConfirmationModal'
@@ -141,7 +142,7 @@ const CreateEmployeeView = () => {
         </Form.Group>
 
         {/* Date of Birth */}
-        <Form.Group>
+        {/* <Form.Group>
           <Form.Label htmlFor="date-of-birth">Date of Birth</Form.Label>
           <Form.Control
             required
@@ -153,7 +154,13 @@ const CreateEmployeeView = () => {
           <Form.Control.Feedback type="invalid">
             Please choose a date of birth.
           </Form.Control.Feedback>
-        </Form.Group>
+        </Form.Group> */}
+        <CustomDatePicker
+          label="Date of Birth"
+          htmlForLabel="date-of-birth"
+          value={dateOfBirth}
+          handler={setDateOfBirth}
+        />
 
         {/* Start Date */}
         <Form.Group>

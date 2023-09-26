@@ -1,9 +1,10 @@
-import React, { forwardRef } from 'react'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import 'react-datepicker/dist/react-datepicker.min.css'
+import React from 'react'
+// import React, { forwardRef } from 'react'
+// import DatePicker from 'react-datepicker'
+// import 'react-datepicker/dist/react-datepicker.css'
+// import 'react-datepicker/dist/react-datepicker.min.css'
 import Form from 'react-bootstrap/Form'
-import { format } from 'date-fns'
+// import { format } from 'date-fns'
 
 /**
  * The `CustomDatePicker` component is a custom date picker component built on top of
@@ -28,35 +29,23 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
    * @param {React.Ref} ref - A ref forwarded by the date picker.
    * @returns {JSX.Element} The rendered CustomInput component.
    */
-  const CustomInput = forwardRef(({ value, onClick }, ref) => (
+
+  return (
     <Form.Group>
       <Form.Label htmlFor={htmlForLabel}>{label}</Form.Label>
       <Form.Control
         required
-        type="text"
-        defaultValue={value}
-        onClick={onClick}
-        ref={ref}
+        type="date"
+        id={htmlForLabel}
         placeholder="month/day/year"
+        value={value}
+        onChange={(e) => handler(e.target.value)}
+        aria-label={`${label} input`}
       />
       <Form.Control.Feedback type="invalid">
         Please choose a {label.toLowerCase()}.
       </Form.Control.Feedback>
     </Form.Group>
-  ))
-
-  return (
-    <React.Fragment>
-      <DatePicker
-        selected={value ? new Date(value) : value}
-        onChange={(date) => handler(format(date, 'MM-dd-yyyy'))}
-        dateFormat="MM/dd/yyyy"
-        todayButton="TODAY"
-        aria-label={`${label} input`}
-        wrapperClassName="d-block"
-        customInput={<CustomInput />}
-      />
-    </React.Fragment>
   )
 }
 
