@@ -40,6 +40,10 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
         wrapperClassName="d-block"
         customInput={<CustomInput />}
         withPortal
+        peekNextMonth
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
       />
       <Form.Control.Feedback type="invalid">
         Please choose a {label.toLowerCase()}.
