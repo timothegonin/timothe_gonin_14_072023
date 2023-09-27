@@ -6,9 +6,9 @@ import { states } from '../../constants'
 import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
-import CustomDatePicker from '../../components/DatePicker'
-import Button from 'react-bootstrap/Button'
+import CustomDatePicker from '../../components/CustomDatePicker'
 import Dropdown from '../../components/Dropdown'
+import Button from 'react-bootstrap/Button'
 import ConfirmationModal from '../../components/ConfirmationModal'
 
 /* 
@@ -125,6 +125,7 @@ const CreateEmployeeView = () => {
             Please choose a first name.
           </Form.Control.Feedback>
         </Form.Group>
+
         {/* Last Name */}
         <Form.Group>
           <Form.Label htmlFor="last-name">Last Name</Form.Label>
@@ -139,6 +140,7 @@ const CreateEmployeeView = () => {
             Please choose a last name.
           </Form.Control.Feedback>
         </Form.Group>
+
         {/* Date of Birth */}
         <CustomDatePicker
           label="Date of Birth"
@@ -146,6 +148,7 @@ const CreateEmployeeView = () => {
           value={dateOfBirth}
           handler={setDateOfBirth}
         />
+
         {/* Start Date */}
         <CustomDatePicker
           label="Start Date"
@@ -153,9 +156,11 @@ const CreateEmployeeView = () => {
           value={startDate}
           handler={setStartDate}
         />
-        {/* Address */}
+
+        {/* FIELDSET ADRESS */}
         <Fieldset className="address">
           <legend>Address</legend>
+
           {/* Street */}
           <Form.Group>
             <Form.Label>Street</Form.Label>
@@ -170,6 +175,7 @@ const CreateEmployeeView = () => {
               Please choose a street.
             </Form.Control.Feedback>
           </Form.Group>
+
           {/* City */}
           <Form.Group>
             <Form.Label>City</Form.Label>
@@ -184,6 +190,7 @@ const CreateEmployeeView = () => {
               Please choose a city.
             </Form.Control.Feedback>
           </Form.Group>
+
           {/* State */}
           <Dropdown
             label="State"
@@ -200,6 +207,7 @@ const CreateEmployeeView = () => {
               </option>
             ))}
           </Dropdown>
+
           {/* Zip Code */}
           <Form.Group>
             <Form.Label>Zip Code</Form.Label>
@@ -215,6 +223,7 @@ const CreateEmployeeView = () => {
             </Form.Control.Feedback>
           </Form.Group>
         </Fieldset>
+
         {/* Department */}
         <Dropdown
           label="Departement"
@@ -228,12 +237,14 @@ const CreateEmployeeView = () => {
           <option value="Human Resources">Human Resources</option>
           <option value="Legal">Legal</option>
         </Dropdown>
+
         {/* Submit Button */}
         <div className="mt-4 mb-5">
           <Button className="w-100" variant="outline-primary" type="submit">
             Save
           </Button>
         </div>
+
         {/* Confirmation Modal */}
         <ConfirmationModal onClose={handleConfirmationModalClose} />
       </Form>
