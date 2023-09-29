@@ -183,8 +183,8 @@ const CreateEmployeeView = () => {
               required
               id="street"
               type="text"
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
+              value={newEmployee.street}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a street.
@@ -198,8 +198,8 @@ const CreateEmployeeView = () => {
               required
               id="city"
               type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={newEmployee.city}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a city.
@@ -228,10 +228,10 @@ const CreateEmployeeView = () => {
             <Form.Label>Zip Code</Form.Label>
             <Form.Control
               required
-              id="zip-code"
+              id="zipCode"
               type="number"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
+              value={newEmployee.zipCode}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a zip code.
