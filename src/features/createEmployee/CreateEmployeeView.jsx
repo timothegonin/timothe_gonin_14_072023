@@ -72,6 +72,17 @@ const CreateEmployeeView = () => {
 
   const [validated, setValidated] = useState(false)
   const formRef = useRef(null)
+  const [newEmployee, setNewEmployee] = useState({
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    startDate: '',
+    department: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+  })
 
   const handleConfirmationModalClose = () => {
     setValidated(false)
@@ -102,6 +113,10 @@ const CreateEmployeeView = () => {
     dispatch(createEmployee(employee))
   }
 
+  const handleInputChange = (e) => {
+    setNewEmployee({ ...newEmployee, [e.target.id]: e.target.value })
+  }
+
   return (
     <section>
       <Form
@@ -117,9 +132,9 @@ const CreateEmployeeView = () => {
           <Form.Control
             required
             type="text"
-            id="first-name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            id="firstName"
+            value={newEmployee.firstName}
+            onChange={handleInputChange}
           />
           <Form.Control.Feedback type="invalid">
             Please choose a first name.
@@ -132,9 +147,9 @@ const CreateEmployeeView = () => {
           <Form.Control
             required
             type="text"
-            id="last-name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            id="lastName"
+            value={newEmployee.lastName}
+            onChange={handleInputChange}
           />
           <Form.Control.Feedback type="invalid">
             Please choose a last name.
