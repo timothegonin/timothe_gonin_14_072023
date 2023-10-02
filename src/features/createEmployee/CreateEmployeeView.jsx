@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
-import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/CustomDatePicker'
@@ -48,27 +47,6 @@ const Fieldset = styled.fieldset`
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
-  const {
-    // firstName,
-    // setFirstName,
-    // lastName,
-    // setLastName,
-    // dateOfBirth,
-    // setDateOfBirth,
-    // startDate,
-    // setStartDate,
-    // department,
-    // setDepartment,
-    // street,
-    // setStreet,
-    // city,
-    // setCity,
-    // state,
-    // setState,
-    // zipCode,
-    // setZipCode,
-    resetFormFields,
-  } = useFormFields()
 
   const [validated, setValidated] = useState(false)
   const formRef = useRef(null)
@@ -84,16 +62,12 @@ const CreateEmployeeView = () => {
     zipCode: '',
   })
 
-  const handleConfirmationModalClose = () => {
-    setValidated(false)
-    const emptyEmployee = {}
-    for (const key in newEmployee) {
-      if (newEmployee.hasOwnProperty(key)) {
-        emptyEmployee[key] = ''
-      }
-    }
-    setNewEmployee(emptyEmployee)
-    formRef.current.reset()
+  const handleInputChange = (e) => {
+    setNewEmployee({ ...newEmployee, [e.target.id]: e.target.value })
+  }
+
+  const handleDatePickerChange = (key, value) => {
+    setNewEmployee({ ...newEmployee, [key]: value })
   }
 
   const handleSubmit = (event) => {
@@ -108,12 +82,16 @@ const CreateEmployeeView = () => {
     dispatch(createEmployee(newEmployee))
   }
 
-  const handleInputChange = (e) => {
-    setNewEmployee({ ...newEmployee, [e.target.id]: e.target.value })
-  }
-
-  const handleDatePickerChange = (key, value) => {
-    setNewEmployee({ ...newEmployee, [key]: value })
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    const emptyEmployee = {}
+    for (const key in newEmployee) {
+      if (newEmployee.hasOwnProperty(key)) {
+        emptyEmployee[key] = ''
+      }
+    }
+    setNewEmployee(emptyEmployee)
+    formRef.current.reset()
   }
 
   return (
