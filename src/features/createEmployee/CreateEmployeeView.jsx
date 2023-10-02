@@ -49,24 +49,24 @@ const Fieldset = styled.fieldset`
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
   const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
+    // firstName,
+    // setFirstName,
+    // lastName,
+    // setLastName,
     dateOfBirth,
     setDateOfBirth,
     startDate,
     setStartDate,
     department,
-    setDepartment,
-    street,
-    setStreet,
-    city,
-    setCity,
-    state,
-    setState,
-    zipCode,
-    setZipCode,
+    // setDepartment,
+    // street,
+    // setStreet,
+    // city,
+    // setCity,
+    // state,
+    // setState,
+    // zipCode,
+    // setZipCode,
     resetFormFields,
   } = useFormFields()
 
@@ -100,17 +100,17 @@ const CreateEmployeeView = () => {
     }
 
     const employee = {
-      firstName,
-      lastName,
+      // firstName,
+      // lastName,
       dateOfBirth,
       startDate,
-      department,
-      street,
-      city,
-      state,
-      zipCode,
+      // department,
+      // street,
+      // city,
+      // state,
+      // zipCode,
     }
-    dispatch(createEmployee(employee))
+    dispatch(createEmployee(newEmployee))
   }
 
   const handleInputChange = (e) => {
@@ -210,8 +210,9 @@ const CreateEmployeeView = () => {
           <Dropdown
             label="State"
             htmlForLabel="state"
-            value={department}
-            handler={setState}
+            value={newEmployee.state}
+            handler={handleInputChange}
+            id="state"
           >
             {states.map((state, index) => (
               <option
@@ -241,10 +242,11 @@ const CreateEmployeeView = () => {
 
         {/* Department */}
         <Dropdown
-          label="Departement"
-          htmlForLabel="departement"
-          value={department}
-          handler={setDepartment}
+          label="department"
+          htmlForLabel="department"
+          value={newEmployee.department}
+          handler={handleInputChange}
+          id="department"
         >
           <option value="Sales">Sales</option>
           <option value="Marketing">Marketing</option>

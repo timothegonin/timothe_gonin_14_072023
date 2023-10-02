@@ -15,16 +15,17 @@ import Form from 'react-bootstrap/Form'
  * @param {React.ReactNode} children - The child components representing the dropdown options.
  * @returns {JSX.Element} The rendered Dropdown component.
  */
-const Dropdown = ({ label, htmlForLabel, value, handler, children }) => {
+const Dropdown = ({ label, htmlForLabel, value, handler, id, children }) => {
   return (
     <Form.Group className="pe-auto">
       <Form.Label htmlFor={htmlForLabel}>{label}</Form.Label>
       <Form.Select
         required
         defaultValue={value}
-        onChange={(e) => handler(e.target.value)}
+        onChange={handler}
         aria-label={`${label} dropdown menu`}
         role="button"
+        id={id}
       >
         <option className="text-muted" type="invalid" value="">
           Choose your {label.toLowerCase()}
