@@ -18,14 +18,19 @@ import { format } from 'date-fns'
  */
 const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
   const CustomInput = forwardRef(({ value, onClick }, ref) => (
-    <Form.Control
-      required
-      type="text"
-      defaultValue={value}
-      onClick={onClick}
-      ref={ref}
-      placeholder="month/day/year"
-    />
+    <React.Fragment>
+      <Form.Control
+        required
+        type="text"
+        defaultValue={value}
+        onClick={onClick}
+        ref={ref}
+        placeholder="month/day/year"
+      />
+      <Form.Control.Feedback type="invalid">
+        Please choose a {label.toLowerCase()}.
+      </Form.Control.Feedback>
+    </React.Fragment>
   ))
 
   return (
@@ -45,9 +50,6 @@ const CustomDatePicker = ({ label, htmlForLabel, value, handler }) => {
         showYearDropdown
         dropdownMode="select"
       />
-      <Form.Control.Feedback type="invalid">
-        Please choose a {label.toLowerCase()}.
-      </Form.Control.Feedback>
     </Form.Group>
   )
 }

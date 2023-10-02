@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { createEmployee } from './employeesSlice'
 import { states } from '../../constants'
-import useFormFields from '../../hooks/useFormFields'
 
 import Form from 'react-bootstrap/Form'
 import CustomDatePicker from '../../components/CustomDatePicker'
@@ -48,35 +47,27 @@ const Fieldset = styled.fieldset`
 
 const CreateEmployeeView = () => {
   const dispatch = useDispatch()
-  const {
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    dateOfBirth,
-    setDateOfBirth,
-    startDate,
-    setStartDate,
-    department,
-    setDepartment,
-    street,
-    setStreet,
-    city,
-    setCity,
-    state,
-    setState,
-    zipCode,
-    setZipCode,
-    resetFormFields,
-  } = useFormFields()
 
   const [validated, setValidated] = useState(false)
   const formRef = useRef(null)
+  const [newEmployee, setNewEmployee] = useState({
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    startDate: '',
+    department: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+  })
 
-  const handleConfirmationModalClose = () => {
-    setValidated(false)
-    resetFormFields()
-    formRef.current.reset()
+  const handleInputChange = (e) => {
+    setNewEmployee({ ...newEmployee, [e.target.id]: e.target.value })
+  }
+
+  const handleDatePickerChange = (key, value) => {
+    setNewEmployee({ ...newEmployee, [key]: value })
   }
 
   const handleSubmit = (event) => {
@@ -88,18 +79,19 @@ const CreateEmployeeView = () => {
       return
     }
 
-    const employee = {
-      firstName,
-      lastName,
-      dateOfBirth,
-      startDate,
-      department,
-      street,
-      city,
-      state,
-      zipCode,
+    dispatch(createEmployee(newEmployee))
+  }
+
+  const handleConfirmationModalClose = () => {
+    setValidated(false)
+    const emptyEmployee = {}
+    for (const key in newEmployee) {
+      if (newEmployee.hasOwnProperty(key)) {
+        emptyEmployee[key] = ''
+      }
     }
-    dispatch(createEmployee(employee))
+    setNewEmployee(emptyEmployee)
+    formRef.current.reset()
   }
 
   return (
@@ -117,9 +109,9 @@ const CreateEmployeeView = () => {
           <Form.Control
             required
             type="text"
-            id="first-name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            id="firstName"
+            value={newEmployee.firstName}
+            onChange={handleInputChange}
           />
           <Form.Control.Feedback type="invalid">
             Please choose a first name.
@@ -132,9 +124,9 @@ const CreateEmployeeView = () => {
           <Form.Control
             required
             type="text"
-            id="last-name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            id="lastName"
+            value={newEmployee.lastName}
+            onChange={handleInputChange}
           />
           <Form.Control.Feedback type="invalid">
             Please choose a last name.
@@ -145,16 +137,16 @@ const CreateEmployeeView = () => {
         <CustomDatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
-          value={dateOfBirth}
-          handler={setDateOfBirth}
+          value={newEmployee.dateOfBirth}
+          handler={(date) => handleDatePickerChange('dateOfBirth', date)}
         />
 
         {/* Start Date */}
         <CustomDatePicker
           label="Start Date"
           htmlForLabel="start-date"
-          value={startDate}
-          handler={setStartDate}
+          value={newEmployee.startDate}
+          handler={(date) => handleDatePickerChange('startDate', date)}
         />
 
         {/* FIELDSET ADRESS */}
@@ -168,8 +160,8 @@ const CreateEmployeeView = () => {
               required
               id="street"
               type="text"
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
+              value={newEmployee.street}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a street.
@@ -183,8 +175,8 @@ const CreateEmployeeView = () => {
               required
               id="city"
               type="text"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={newEmployee.city}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a city.
@@ -195,8 +187,9 @@ const CreateEmployeeView = () => {
           <Dropdown
             label="State"
             htmlForLabel="state"
-            value={department}
-            handler={setState}
+            value={newEmployee.state}
+            handler={handleInputChange}
+            id="state"
           >
             {states.map((state, index) => (
               <option
@@ -213,10 +206,10 @@ const CreateEmployeeView = () => {
             <Form.Label>Zip Code</Form.Label>
             <Form.Control
               required
-              id="zip-code"
+              id="zipCode"
               type="number"
-              value={zipCode}
-              onChange={(e) => setZipCode(e.target.value)}
+              value={newEmployee.zipCode}
+              onChange={handleInputChange}
             />
             <Form.Control.Feedback type="invalid">
               Please choose a zip code.
@@ -226,10 +219,11 @@ const CreateEmployeeView = () => {
 
         {/* Department */}
         <Dropdown
-          label="Departement"
-          htmlForLabel="departement"
-          value={department}
-          handler={setDepartment}
+          label="department"
+          htmlForLabel="department"
+          value={newEmployee.department}
+          handler={handleInputChange}
+          id="department"
         >
           <option value="Sales">Sales</option>
           <option value="Marketing">Marketing</option>
