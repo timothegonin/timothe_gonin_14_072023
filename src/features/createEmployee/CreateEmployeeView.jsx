@@ -53,11 +53,11 @@ const CreateEmployeeView = () => {
     // setFirstName,
     // lastName,
     // setLastName,
-    dateOfBirth,
-    setDateOfBirth,
-    startDate,
-    setStartDate,
-    department,
+    // dateOfBirth,
+    // setDateOfBirth,
+    // startDate,
+    // setStartDate,
+    // department,
     // setDepartment,
     // street,
     // setStreet,
@@ -102,8 +102,8 @@ const CreateEmployeeView = () => {
     const employee = {
       // firstName,
       // lastName,
-      dateOfBirth,
-      startDate,
+      // dateOfBirth,
+      // startDate,
       // department,
       // street,
       // city,
@@ -115,6 +115,10 @@ const CreateEmployeeView = () => {
 
   const handleInputChange = (e) => {
     setNewEmployee({ ...newEmployee, [e.target.id]: e.target.value })
+  }
+
+  const handleDatePickerChange = (key, value) => {
+    setNewEmployee({ ...newEmployee, [key]: value })
   }
 
   return (
@@ -160,16 +164,16 @@ const CreateEmployeeView = () => {
         <CustomDatePicker
           label="Date of Birth"
           htmlForLabel="date-of-birth"
-          value={dateOfBirth}
-          handler={setDateOfBirth}
+          value={newEmployee.dateOfBirth}
+          handler={(date) => handleDatePickerChange('dateOfBirth', date)}
         />
 
         {/* Start Date */}
         <CustomDatePicker
           label="Start Date"
           htmlForLabel="start-date"
-          value={startDate}
-          handler={setStartDate}
+          value={newEmployee.startDate}
+          handler={(date) => handleDatePickerChange('startDate', date)}
         />
 
         {/* FIELDSET ADRESS */}
