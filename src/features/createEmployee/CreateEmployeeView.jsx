@@ -86,7 +86,13 @@ const CreateEmployeeView = () => {
 
   const handleConfirmationModalClose = () => {
     setValidated(false)
-    resetFormFields()
+    const emptyEmployee = {}
+    for (const key in newEmployee) {
+      if (newEmployee.hasOwnProperty(key)) {
+        emptyEmployee[key] = ''
+      }
+    }
+    setNewEmployee(emptyEmployee)
     formRef.current.reset()
   }
 
@@ -99,17 +105,6 @@ const CreateEmployeeView = () => {
       return
     }
 
-    const employee = {
-      // firstName,
-      // lastName,
-      // dateOfBirth,
-      // startDate,
-      // department,
-      // street,
-      // city,
-      // state,
-      // zipCode,
-    }
     dispatch(createEmployee(newEmployee))
   }
 
