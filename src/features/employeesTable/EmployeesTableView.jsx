@@ -11,7 +11,6 @@ import { SortableTable } from 'sortable-table-react'
 
 const EmployeesTableView = () => {
   const employees = useSelector((state) => state.employees.currentEmployees)
-  console.log(employees)
 
   const tableHeadsList = [
     'First Name',
